@@ -1,0 +1,18 @@
+body{
+    background-color: rgb(173, 104, 87);
+}
+
+label{
+    display: inline-block;
+    width: 10rem;
+    text-align: right;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+form{
+    display: inline-block;
+    border: solid black 5px;
+    
+}

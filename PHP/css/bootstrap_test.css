@@ -1,0 +1,24 @@
+header img{
+    margin-bottom: 10px;
+    height: 150px;
+}
+li{
+    list-style-type: none;
+}
+
+.image{
+    height: 300px;
+}
+
+section img{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vans2{
+    height: 440px;
+}
+
+footer img{
+    height: 200px;
+}
