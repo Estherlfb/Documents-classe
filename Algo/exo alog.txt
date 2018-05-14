@@ -1,0 +1,256 @@
+L'utilisateur entre un chiffre (6), on ressort  sa table de multiplication (table de multiplication de 6)
+
+Debut 
+Variable Chiffre
+Variable Multiplication
+Variable 
+
+Multiplication = 0
+
+Ecrire "Entre un nombre entre 1 et 10"
+Lire Chiffre
+tant que Multiplication <= 10 alors
+Multiplication = Chiffre * Multiplication
+Ecrire "La table de mutiplication de" && Chiffre "est" && Multiplication
+Multiplication++
+
+Fin tant que
+Fin
+
+
+
+L'utilisateur rentre un chiffre (8), on lui ressort tous les chiffres avant (1.2.3.4.5.6.7)
+
+Debut
+Variable Chiffre2
+Variable index
+
+Index = 0
+
+Ecrire "Entre un nombre"
+Lire Chiffre2
+Pour Index à Chiffre pas 1
+Ecrire Index
+
+Index suivant
+Fin
+
+
+
+L'utilisateur rentre un prénom + un age (x3). On lui ressort une catégorie (0.6 baby, 6.7 poussin, 8.9 pupille, 10.11 minime, 11 cadet)
+
+Debut
+Variable Prénom
+Variable Age
+Variable index
+Variable NombrePersonne
+
+index = 0
+Age = 0
+Ecrire "Entrez un Prénom et un âge"
+Lire Prenom && Age
+
+Ecrire "Combien de personnes"
+Lire NombrePersonne
+
+Pour i a NombrePersonne
+Si Age==0 && Age<=5
+Ecrire "Vous êtes un baby"
+Sinon Si Age>6 && Age<=7
+Ecrire "Vous êtes un poussin"
+Sinon Si Age>= 8 && Age<=9
+Ecrire "Vous êtes un pupille"
+Sinon Si Age>= 10 && Age<=11
+Ecrire "Vous êtes un minime"
+Sinon Si Age>=12 
+Ecrire "Vous êtes un cadet"
+Sinon 
+Ecrire "l'age est incorrect"
+
+Fin si
+index suivant
+Fin
+
+
+
+
+Debut
+Tableau monTableau (10)
+
+Pour i = 0 à 9
+monTableau (0) = 0
+monTableau (1) = 2
+monTableau (2) = 4
+monTableau (3) = 6
+monTableau (4) = 8
+monTableau (5) = 10
+monTableau (6) = 12
+monTableau (7) = 14
+monTableau (8) = 16
+monTableau (9) = 18
+
+monTableau (i) = montableau (i) + 2
+Lire monTableau
+Index suivant
+Fin
+
+
+Debut
+Tableau deuxièmeTableau (5)
+Variable i
+Variable moyenne
+Moyenne = 0
+
+Déclarer le tableau
+
+Pour i = 0 à 4
+Moyenne = (t(0) + t(1) + t(2) + t(3) + t(4)) / 5
+Index suivant
+Ecrire moyenne
+Fin
+
+
+Debut
+Tableau troisièmeTableau (7)
+Variable i
+Variable somme
+Somme = 0
+
+Déclarer le tableau
+
+Pour i = 0 à 6
+Somme = somme + t(0) + t(1) + t(2) + t(3) + t(4) + t(5) + t(6)
+Index suivant
+Ecrire somme
+Fin
+
+
+Debut
+Tableau Tbl3 ()
+Tableau Tbl1 (5)
+Tableau Tbl2 (4)
+i = 0
+s = 0
+
+Tbl1 (0) = 1
+Tbl1 (1) = 6
+Tbl1 (2) = 9
+Tbl1 (3) = 10
+Tbl1 (4) = 13
+
+Tbl2 (0) = 2
+Tbl2 (1) = 1
+Tbl2 (2) = 2
+Tbl2 (3) = 1
+
+Tbl 3 () = Tbl 1
+Pour i = 5 à 8
+Tbl3 (i) = Tbl2 (s)
+s = s + 1
+i suivant
+
+Pour i = 0 à 8
+i suivant
+Fin
+
+
+Debut 
+Tableau cinquièmeTableau ()
+Variable i
+Tableau Tbl3 ()
+Tableau Tbl4 ()
+Pour i = 0 à 7
+
+Tbl3 (0) = 2
+Tbl3 (1) = 12
+Tbl3 (2) = 24
+Tbl3 (3) = 56
+
+Tbl4 (0) = 6
+Tbl4 (1) = 8
+
+cinquièmeTableau (0) = Tbl4 (0) * Tbl3 (0)
+cinquièmeTableau (1) = Tbl4 (0) * Tbl2 (1)
+cinquièmeTableau (2) = Tbl4 (0) * Tbl2 (2)
+cinquièmeTableau (3) = Tbl4 (0) * Tbl2 (3)
+cinquièmeTableau (4) = Tbl4 (1) * Tbl2 (0)
+cinquièmeTableau (5) = Tbl4 (1) * Tbl2 (1)
+cinquièmeTableau (6) = Tbl4 (1) * Tbl2 (2)
+cinquièmeTableau (7) = Tbl4 (1) * Tbl2 (3)
+
+Ecrire "Le résultat de 6 * 2 = " && cinquièmeTableau(0)
+.........
+.........
+
+Index suivant
+Fin
+
+
+Boucle pour pour écrire T3(i)
+i = 0
+Pour i allant de 0 à 7
+Ecrire T3(i)
+i suivant
+
+Ecrire = dire à la machine d'afficher
+
+
+Chiffre mystere :
+Debut
+Variable valeurMystere = 689
+Variable valeurUtilisateur = 0
+Ecrire "entrez une valeur"
+
+Tant que valeurMystère != valeurUtilisateur alors
+Ecrire "Entrez une valeur"
+Lire valeurUtilisateur
+
+Si valeurUtilisateir < valeurMystere alors
+Ecrire "La valeur est plus grande"
+
+Sinon si valeurUtilisateur > valeurMystere alors
+Ecrire "plus petit"
+
+Sinon si valeurUtilisateur == valeurMystere alors
+Ecrire "Gagné!"
+
+Sinon 
+Ecrire "erreur"
+Fin tant que
+Fin
+
+
+
+
+
+
+
+Synthaxe
+Debut
+Variable maVariable
+Tableau Tab1 ()
+maVariable = 0
+Fin
+
+
+Debut
+Si 1>0 alors
+
+Sinon si 2>0 alors
+
+Sinon (sinon obligatoire si on met un sinon si)
+
+Fin si
+Fin
+
+
+Debut
+Tant que o<1 alors
+ --> Faire attention à sortir de la boucle 
+Fin tant que 
+Fin
+
+Debut
+Pour i = 0 à 15 pas 2
+I suivant
+Fin

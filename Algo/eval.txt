@@ -1,0 +1,56 @@
+Faire un tableau Tab1 rempli par une boucle affichant les 21 premiers termes de la suite.
+Demander à l'utilisateur d'entrer un nombre et indiquer à l'utilisateur si son nombre est dans Tab1 ou pas.
+Faire un tableau Tab2 rempli par l'ensemble des chiffres inférieurs au chiffre entré par l'utilisateur présent dans le tableau Tab1.
+Afficher la somme des valeurs de Tab2 sous la forme : "La somme est égale à .....".
+
+Debut 
+
+Tableau Tab1 (21)
+Tableau Tab2 (21)
+Variable nombreAvant1 = 0
+Variable nonmbreAvant2 = 1
+Variable Nombres = 0
+Variable i = 0
+Variable somme = 0
+Variable nombreUtilisateur = 31
+Variable chiffresAvantUtilisateur
+Variable somme2 = 0
+Variable s
+
+Pour i = 0 à 20 pas 1
+
+Somme = nombreAvant1 + nombreAvant2
+Tab1 = Tab1(i) + Nombres
+Nombre = somme + 1      (on incrémente)
+Index suivant
+
+Pour i allant de 0 à 20
+Ecrire Tab1(i)
+Index suivant
+
+
+Entrer "Entrez un nombre"
+Lire nombreUtilisateur
+
+Si nombreUtilisateur > Nombres alors
+Ecrire "Le nombre entré n'est pas dans le tableau"
+
+Sinon
+Ecrire "Le nombre entré est bien dans le tableau"
+
+Fin si
+
+Lire nombreUtilisateur
+Pour i à nombreUtilisateur pas 1
+Tab1 = i
+Tab2 = tab1(i)
+
+Index suivant
+
+Pour i = 0 à 9
+somme2 = somme2 + Tab2(0) + Tab2(1) + Tab2(2) + Tab2(3) + Tab2(4) + Tab2(5) + Tab2(6) + Tab2(7) + Tab2(8) + Tab2(9)
+Index suivant
+Ecrire "La somme est égale à 71"
+
+Fin
+
