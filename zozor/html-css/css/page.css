@@ -1,0 +1,105 @@
+.container{
+    max-width: 102vh;
+    margin: 0 auto;
+}    
+
+body{
+    background: beige;
+}
+
+header{
+    display:flex;
+}
+
+figure{
+    align:left;
+}
+
+span{ /*carnets de voyage */
+    display: flex;
+}
+
+.barre{
+    display: flex;
+    display: inline-block;
+    align-items: flex-end;
+    weight: 50%;
+    /* float: right; */
+}
+
+li.blog{
+    display: inline;
+    list-style-type: none;
+    display: flex;
+    display: inline-block;
+    align-items: flex-end;
+}
+
+.separateur{
+    width: 950px;
+    max-height: 5px;
+}
+
+.sanfrancisco{
+    border-radius: 10px;
+    margin: 0;
+}
+
+.cote{
+    display: flex; 
+}
+
+aside{
+    text-align: center;
+    border-radius: 10px;
+    width: 70%;
+    height: 500px;
+    background-color: grey;
+}
+
+.para{
+    text-align: left;
+    margin: 10px;
+}
+
+.bouton{ /*bouton revenir haut */
+    margin-left: 400px;
+} 
+
+footer{
+    display: flex;
+    padding-left: 50px;
+    justify-content: space-around;
+}
+
+.deux{
+    display: flex;
+}
+
+.villes{
+    list-style-type: none;
+    margin: 5px;
+}
+
+h3{
+    text-align: center;
+}
+
+.buton{ /*voir l'article*/
+    right: 30px;
+    bottom: 20px;
+}
+
+figure{
+    position: relative;
+    bottom:0;
+    width:100%;
+    line-height: 20px;
+    background: rgba(0,0,0,0.6)
+}
+
+.legend{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
