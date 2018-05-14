@@ -1,0 +1,45 @@
+h1 {
+    color:red;
+    background-color: yellow;
+}
+
+p{
+    font-style: italic;
+}
+
+del{
+    font-weight: bold;
+    display: block;
+}
+
+ul > li {
+    color: green;
+}
+
+.para{
+    padding: 20px;
+    border: 20px solid red;
+    margin: 20px;
+    width: 50%;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+a:hover{
+    color: grey;
+}
+
+ul.navigation {
+    display:column;
+    padding: 0;
+    margin: 0;
+}
+
+ul.navigation li {
+    list-style-type: none;
+}
+
+
+

@@ -1,0 +1,5 @@
+.item{
+    width: 50%;
+    float: left;
+    display:flex;
+}

@@ -1,0 +1,45 @@
+.premiere_image{
+    width: 100%;
+    height: 500px;
+}
+
+.corps{
+    display: flex;
+}
+.premier_texte{
+position: relative;
+display: flex;
+background-color: blue;
+height: 100%;
+margin: 20px;
+color: green;
+}
+
+.titre{
+    font-size: 36;
+    font-style: italic;
+}
+
+.images{
+display: flex;
+align: center;
+}
+
+.fleur{
+     height: 100px;
+     margin-right: 100px;
+ }
+
+.oiseau{ 
+     height: 100px;
+ }
+
+.troisieme_texte{
+    background-color: red;
+    height: 100%;
+    margin: 20px;
+}
+
+.text{
+    border: 1px solid red;
+}

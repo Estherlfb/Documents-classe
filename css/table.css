@@ -1,0 +1,23 @@
+
+label{
+    display: inline-block;
+    width: 10rem;
+    margin: 0.3rem;
+    text-align: right; /*les boutons ne sont pas alignés*/
+    vertical-align: middle; /*bouttons centrés par rapport au texte*/
+    margin-bottom: 1rem; /*marges entre les input*/
+}
+
+.env{ /*boutton*/
+    background-color: burlywood;
+    border-radius: 10px; /*border: none;*/
+    margin-left: 11rem;
+    width: 10rem;
+    padding: 1rem;
+}
+
+.box{
+   
+}
+
+

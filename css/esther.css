@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header{
+    background: yellow;; 
+    position: relative;
+}
+
+aside{
+    background: greenyellow;
+    display: flex;
+    align-items: flex-start;
+}
+
+section{
+    margin: 40px;
+}
+
+article{
+    background: orange;
+    display: flex;
+   
+}
+
+.article{
+   width: 50%;
+    
+}
+
+.image{
+   margin-right: 50px;
+   margin-left: 16rem;
+    width: 50%;
+}
+
+footer{
+    background: moccasin;
+    display: flex;
+    align-items: stretch;
+}
+
+li{
+    list-style-type: none;
+}
+
+.pied{
+    display: flex;
+  
+}
+
+figure{
+    position: relative;
+    bottom:0;
+    width:50%;
+    line-height: 20px;
+    background: rgba(0,0,0,0.6)
+}
+
+.legend{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}

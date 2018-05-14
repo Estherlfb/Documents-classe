@@ -1,0 +1,7 @@
+h1:before{
+content:"je suis avant" /*permet d'integrer des élements dans la page sans html*/
+}
+
+h1:after{
+    content:"je suis après"
+}

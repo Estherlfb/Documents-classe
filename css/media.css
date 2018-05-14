@@ -1,0 +1,10 @@
+ div{
+     background: blue;
+     width: 10rem;
+ }
+ 
+ @media screen and (max-width: 900px){
+  
+      div{ background: red;
+    }  
+    

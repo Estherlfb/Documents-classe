@@ -1,0 +1,52 @@
+body{
+    background-color: black;
+    color: white;
+    margin: 10px;
+}
+
+nav{
+    display: flex;
+}
+
+li{
+    display: flex;
+    padding: 0 0.5em;
+    border: 2px solid green;
+    height: 60px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1{
+    text-align: center;
+}
+
+.premier_texte{
+    border: 2px solid red;
+}
+
+.paragraphes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat{
+    background-size: contain;
+    width: 100%;
+    height: 20px;
+
+}
+
+section{
+    display: flex;
+    margin: 10px;
+}
+
+.vimeo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
