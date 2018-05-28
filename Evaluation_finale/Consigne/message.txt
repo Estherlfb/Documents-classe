@@ -1,0 +1,42 @@
+1 - Créer un espace membre (inscription / connexion) 
+­-­Nom (text / varchar(255))
+­-­Prenom (text / varchar(255))
+­-­Email (email / varchar(255)) necessaire pour se connecter
+­-­Mot de passe (password / varchar(255)) necessaire pour se connecter
+­-­Confirmation du mot de passe (password / pas dans la base)
+
+2 - Lorsque nous sommes connectés à l'espace membre, nous pouvons gerer un blog d'actualité à l'aide de 2 pages : 
+­creation_article.php qui permettra de créer un article contenant :
+­- Titre (text / varchar(255))
+­- Sous-titre (text / varchar(255))
+­- Date (date / varchar(255))
+­- Auteur (text / varchar(255))
+­- Contenu (text / text)
+
+­liste_articles.php qui permettra de visualiser la liste des articles (titre + date) (clickable)
+
+­detail_article.php qui permettra de visualier le detail des articles (tout les champs) et qui contiendra un bouton permettant de supprimer l'article 
+
+3 - Lorsque nous sommes connectés à l'espace membre, nous pouvons gerer les utilisateurs du site grace à deux pages : 
+
+­creation_utilisateur.php qui permettra de créer un utilisateur (voir champs de l'inscription)
+
+­liste_utilisateur.php qui permettra de visualiser la liste des utilisateurs (nom + prenom) (clickable)
+
+­detail_utilisateur.php qui permettra de visualier le detail des utilisateurs (tout les champs) et qui contiendra un bouton permettant de supprimer l'utilisateurs
+4 - Lorsque nous sommes connectés à l'espace membre, nous avons accès à un outil de calculatrice qui se compose d'un formulaire tel que : 
+­- Nombre 1 (number)
+­- Nombre 2 (number)
+­- Opération (Select) (Valeurs du Select : Addition / Soustraction / Multiplication / Division)
+
+­lorsqu'on valide le formulaire, le resultat de l'opération apparait. 
+
+5 - Lorsque nous NE SOMMES PAS connecté nous pouvons visualiser la liste des articles disponibles sur le site, nous pourrons également créer un compte et nous connecter. 
+
+6 - Sur l'ensemble des pages disponible en connexion, nous pourrons cliquer sur un bouton de deconnexion 
+
+7 - Enfin, une page contenant un formulaire de contact sera disponible pour les personnes connectées et deconnectée 
+­Le formulaire de contact se composera des champs suivants : 
+­- Email (email)
+­- Sujet (text)
+­- Message (text)

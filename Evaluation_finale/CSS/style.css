@@ -1,0 +1,139 @@
+body{
+    background-color: antiquewhite;
+    text-align: center;
+    font-family: Arial Narrow, sans-serif;
+}
+
+ul li { /* MENU */
+    display : inline;
+    padding : 0 0.5em; 
+    }
+    ul {
+    list-style-type : none; 
+    }
+
+nav{ /* MENU */
+    top: 0;
+    width: 100%;
+    background : beige;
+    margin: 0; 
+    padding: 0;
+    color: black;
+    text-align: center;
+}
+
+li /* MENU */
+ {
+    display: inline;
+    list-style: none;
+}
+
+li a /* MENU */
+{
+    display:inline-block;
+    margin: 30px;
+    color : rgb(88, 199, 199);
+}
+
+/*a:visited 
+{
+    color : rgb(88, 199, 199);
+}*/
+
+.btn_deconnexion{
+    margin-right: 20px;
+    width:95px;
+    float: right;
+    background:#bb5d5d;
+    height:85px;
+    font:bold 13px Arial;
+    box-shadow:2px 2px 8px #aaa;
+    color: white;
+    border-radius:50%;
+    }
+
+.btn_delete{
+    margin: 20px;
+    width:95px;
+    height:85px;
+    background:#fafafa;
+    box-shadow:2px 2px 8px #aaa;
+    font:bold 13px Arial;
+    border-radius:50%;
+    color:#555;
+}
+
+.btn_ok{
+    margin: 20px;
+    background: #FFF;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+  }
+
+  button:hover {
+    box-shadow: 0 2px 0 #000, 0 2px 0px 2px #cc364f;
+  }
+
+  button:active {
+    padding-bottom: 0px;
+    box-shadow: 0 1px 0 #000;
+  }
+
+form{
+    background-color: #e7b7bf;
+    min-height: 500px;
+    width: 450px;
+    border-radius: 5px;
+    height: auto;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    margin: 2% auto;
+    padding: 2%;
+}  
+
+.form_input{
+    width: 200px;
+    height: 30px;
+    margin-top: 2%;
+    padding: 5px;
+    font-size: 14px;
+    font-family: 'Abel', sans-serif;
+    color: #5E6472;
+    outline: none;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    transition: 0.2s linear;
+}
+
+#op{
+    margin-left: 150px;
+    margin-top: 10px;
+    display: block;
+    float: left; 
+}
+
+label
+{
+    text-align: center;
+    margin-bottom: -15px;
+    margin-top: 10px;
+	display: block;
+	width: 150px;
+	float: left;
+}
+input{
+    display: block;
+    float: left;
+}
+
+.lien_inscription{
+    margin: 20px;
+    margin-left: 50px;
+    float: left;
+    background: rgb(117, 236, 236);
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    text-decoration: none;
+}
+    
