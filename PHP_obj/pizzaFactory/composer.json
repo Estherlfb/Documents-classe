@@ -1,0 +1,20 @@
+{
+    "name": "estherlefebvre/pizza-factory",
+    "description": "Librairie de pizzaFactory",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Esther Lefebvre",
+            "email": "esther.lefebvre31@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "pizzaFactory\\": "src/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "symfony/var-dumper": "^4.1"
+    }
+}
