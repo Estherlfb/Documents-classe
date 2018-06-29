@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Avec un fichier JSOn qui contient name:Benoit
+        let xhr = new XMLHttpRequest();  // Je créer un objet xhr
+        xhr.addEventListener("readystatechange", onReadyStateChange);
+        // xhr.onload = onXhrLoad 
+        xhr.open('get', 'data.json'); // open est une méthode de XMLHttpRequest. Méthode Get ou Post
+        xhr.send();
+
+        function onReadyStateChange(evt){
+            console.log("readyState: "+this.readyState) // this est l'émetteur de l'évenement, ici l'émetteur est xhr
+            if(this.readyState == 4 && this.status == 200){ // readyState = 0 à 4, le serveur travaille et récupère les données du serveur / Status = 202 ou 404, si ça s'est bien passé
+                console.log(this.response) // Response = la réponse du serveur 
+                document.body.prepend(JSON.parse(this.responseText).name); // .name parce qu'on veut lui texte du name dans le fichier json
+            }
+        }
+
+    </script>
+        
+</body>
+</html>

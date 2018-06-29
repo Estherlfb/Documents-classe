@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/plugin.css"> -->
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1> Titre </h1>
+
+    <p class="texte 1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus natus quo illo, perferendis minima ad nobis voluptates
+        obcaecati, velit quam atque. Modi repellat placeat nihil cupiditate eaque officia porro quam. </p>
+
+    <p class="texte 2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus natus quo illo, perferendis minima ad nobis voluptates
+        obcaecati, velit quam atque. Modi repellat placeat nihil cupiditate eaque officia porro quam. </p>
+
+    <p class="texte 3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus natus quo illo, perferendis minima ad nobis voluptates
+        obcaecati, velit quam atque. Modi repellat placeat nihil cupiditate eaque officia porro quam. </p>
+
+    <a href="test"> test </a>
+
+    <h3 class="accordeon-head" data-id="test"> Clique </h3>
+
+    <ul id="test">
+        <li> 1 </li>
+        <li> 2 </li>
+        <li> 3 </li>
+        <li> 4 </li>
+        <li> 5 </li>
+    </ul>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+
+    <script>
+        $(function () {
+
+            $.fn.makeRedText = function () {    // Mettre le texte en rouge
+                this.css('color', 'red');
+                return this;
+            }
+
+            $.fn.makeRedText2 = function (colorText) {  // Mettre le texte en couleur, définie quand on appelle la fonction
+                this.css('color', colorText);
+                return this;
+            }
+
+            $.fn.countChars = function () {     // Compter les charactères du texte
+                // console.log(this.text().length);
+                this.each(function () {
+                    console.log($(this).text().length);
+                })
+                return this;
+            }
+
+            $.fn.getHref = function () {
+                let tabl = [];
+                this.each(function () {
+                    if ($(this).is("a[href]")) { // Si il y a une ancre
+                        tabl.push($(this).attr("href")); // On le push dans le tableau
+                    } else {
+                        tabl = tabl.concat($(this).find('a[href]').getHref()); // Sinon, je vérifie qu'il n'y ait pas d'ancre (find), et je l'ajoute à ma fonction getHref
+                    }
+                    return tabl;
+                })
+                console.log($('ul').getHref());
+            }
+
+            // Accordéon sur les listes
+            $.fn.yvette = function () {
+                this.find('.accordeon-head').each(function () { // Je trouve les éléments de la collections jquery avec la classe accordeon-head 
+                    let $target = $('#' + $(this).attr("data-id")); // # parce que je veux récupérer l'id
+                    $target.hide(); // je cache
+                    $(this).click(function (evt) {
+                        $('opened').removeClass('opended').slideUp(); // Je veux fermer ceux qui sont ouvert : je sélectionne celui qui est ouvert, je lui enlève la classe et je le ferme 
+                        $target.addClass('opened').slideDown(); // J'ajoute la classe opended et j'ouvre
+                    })
+                })
+            }
+
+
+            $.fn.underline = function () { // Souligne le mot passé en paramètre
+                this.each(function () {
+                    let html = $(this).html();
+                    html = html.split(str).join("<span class='underline'>" + str + "</span>");
+                    $(this).html(html)
+                })
+            }
+
+
+            // function highlight($el, word) {
+            //     var text = $el.html();
+            //     text = text.replace(new RegExp(word, 'g'), '<span class="hl">' + word + '</span>');
+            //     $el.html(text);
+            // }
+
+            // $.fn.highlight = function (word) {
+            //     return this.each(function () {
+            //         highlight($(this), word);
+            //     });
+            // };
+
+            $.fn.getElement = function () {
+                $(this).click(function (evt) {
+                    console.log(this.tagName);
+                })
+            }
+
+            $("h1").makeRedText();
+            $("h1").makeRedText2("blue"); // Parce qu'il y a un param dans la fonction
+            // $("p").countChars();
+            // $('ul').hide().fadeIn().slideUp();
+            $("body").yvette();
+
+            // $(".test").imageTitle();
+            // $(".content").underline("dolor");
+
+
+        })
+
+    </script>
+</body>
+
+</html>

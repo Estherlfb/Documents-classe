@@ -1,0 +1,235 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        main {
+            display: flex;
+            height: 100%;
+        }
+
+        #movies {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: scroll;
+        }
+
+        #filters {
+            flex-shrink: 0;
+            width: 300px;
+            padding: 20px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.3s;
+        }
+        li.active {
+            background-color: #ddd;
+            color: black;
+        }
+
+        li:hover {
+            background-color: black;
+            color: white;
+        }
+        form {
+            background-color: #ddd;
+            border-radius: 5px;
+            padding: 16px; 
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 16px; 
+        }
+        input[type='text']{
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input:focus{
+            outline: none;
+        }
+        label{
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="movies"></div>
+        <div id="filters">
+            <form action="">
+                <label for="title">Titre</label>
+
+                <input type="text" id="title" name="title">
+
+                <label for="director">Réalisateur</label>
+
+                <input type="text" id="director" name="director">
+                <label for="min-lending">nombre de prêt min [
+                    <span class="min-val"></span>]</label>
+
+                <input type="range" min="0" max="0" name="min-lending" id="min-lending">
+                <label for="max-lending">nombre de prêt max [
+                    <span class="max-val"></span>]</label>
+                <input type="range" min="0" max="0" name="max-lending" id="max-lending">
+
+            </form>
+            <div id="details"></div>
+        </div>
+    </main>
+    <script>
+        //création d'une variable globale pour référebcer le tableau contenant tous les films
+        let data;
+
+        //initilisation de l'application
+        function init() {
+            //création d'une requête ajax
+            let xhr = new XMLHttpRequest();
+            function onReadyStateChange(evt) {
+                if (this.readyState == 4 && this.status == 200) {
+                    //si les données sont correctement chargées, on assigne sa valeur à la variable globale data
+                    data = JSON.parse(this.responseText).records;
+                    //on initialise le formuaire de recherche en lui passant les valeurs minimum et maximum de nbre_de_prets
+                    initForm(
+                        data.reduce((min, val) => (val.fields.nbre_de_prets < min) ? val.fields.nbre_de_prets : min, Infinity),
+                        data.reduce((max, val) => (val.fields.nbre_de_prets > max) ? val.fields.nbre_de_prets : max, 0)
+                    );
+                    //on affiche tous les films
+                    showFilms(data)
+                }
+            }
+            //ajout de l'écouteur de l'événement readystatechange
+            xhr.addEventListener('readystatechange', onReadyStateChange);
+            //définition de la requête
+            xhr.open('get', 'https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=top-500-des-films-les-plus-empruntes-a-la-bibliotheque-de-toulouse&rows=500');
+            //envoi de la requête
+            xhr.send();
+        }
+
+        //initialisation du formulaire qui reçoit le nbre_de_prets max en paramètre
+        function initForm(minLending, maxLending) {
+            //défini les attributs min et max des 2 input:range du formulaire
+            //et ajoute l'événement requis pour être informé d'un changement de valeur 
+            let minRangeElem = document.querySelector('#min-lending');
+            minRangeElem.setAttribute('min', minLending);
+            minRangeElem.setAttribute('max', maxLending);
+            minRangeElem.value = minLending;
+            minRangeElem.addEventListener('input', onFilterChange);
+            let maxRangeElem = document.querySelector('#max-lending')
+            maxRangeElem.setAttribute('min', minLending);
+            maxRangeElem.setAttribute('max', maxLending);
+            maxRangeElem.value = maxLending;
+            maxRangeElem.addEventListener('input', onFilterChange);
+            //intialise la valeur des compteurs des 2 ranges
+            updateRangesInfo()
+            //ajoute sur les 2 champs texte l'événement requis pour être informé d'un appui de touche
+            title.addEventListener('keyup', onFilterChange);
+            director.addEventListener('keyup', onFilterChange);
+        }
+
+        //mise à jour des compteurs des 2 ranges
+        function updateRangesInfo(){
+            let minLending = document.querySelector('#min-lending');
+            let maxLending = document.querySelector('#max-lending');
+            document.querySelector('.min-val').textContent = minLending.value;
+            document.querySelector('.max-val').textContent = maxLending.value;
+        }
+
+        //callback d'une modifictaion des filtres
+        function onFilterChange(evt) {
+            //on affiche les films filtrés
+            showFilms(filterFilms({
+                title: document.querySelector('#title').value,
+                director: document.querySelector('#director').value,
+                lMin: +document.querySelector('#min-lending').value,
+                lMax: +document.querySelector('#max-lending').value
+            }));
+            //on met à jour les compteurs des ranges
+            updateRangesInfo();
+        }
+
+        //filtre les films en fonction des propriétés de l'objet filters 
+        function filterFilms(filters) {
+            return filteredMovies = data.filter(function (film) {
+                let validTitle = film.fields.titre.toLowerCase().includes(filters.title.toLowerCase());
+                let validDirector = film.fields.auteur.toLowerCase().includes(filters.director.toLowerCase());
+                let validLending = (film.fields.nbre_de_prets >= filters.lMin && film.fields.nbre_de_prets <= filters.lMax)
+                if (validTitle && validDirector && validLending) {
+                    return true;
+                }
+            });
+        }
+
+        //affiche la liste des films contenu dans le tableau reçu en paramètre
+        function showFilms(films) {
+            if (films.length > 0) {
+                let fragment = document.createDocumentFragment();
+                let list = document.createElement('ul');
+                fragment.appendChild(list)
+                let results = films.forEach(function (film) {
+                    let li = document.createElement('li');
+                    li.textContent = film.fields.titre;
+                    li.setAttribute('data-id', film.recordid);
+                    li.addEventListener('click', onMovieClick);
+                    list.appendChild(li);
+                }, "");
+                movies.innerHTML = '';
+                movies.appendChild(fragment);
+            } else {
+                movies.innerHTML = 'Aucun film à afficher - modifiez les filtres';
+            }
+        }
+
+        function onMovieClick(evt) {
+            document.querySelectorAll('#movies li.active').forEach(li => li.classList.remove('active'));
+            this.classList.add('active')
+            displayMovieDetails(details,this.dataset.id);
+        }
+
+        function displayMovieDetails(elem,id){
+            let film = getFilmById(id);
+            elem.innerHTML = `
+                <h3>${film.fields.titre}</h3>
+                <strong>réalisateur</strong> : ${film.fields.auteur}<br>
+                <strong>éditeur</strong> : ${film.fields.editeur}<br>
+                <strong>nombre de prêts</strong> : ${film.fields.nbre_de_prets}<br>
+            `;
+        }
+
+        function getFilmById(id) {
+            return data.find(film => film.recordid == id);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

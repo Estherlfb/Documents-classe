@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="Message"> 
+        <p> Message dans le paragraphe </p>
+        <button class="close"> fermer </button> 
+    </div> -->
+    <!-- <button type="button"> Clique </button> -->
+
+    <!-- <input value="Click me" onclick="alert('Click!')" type="button"> -->
+
+    <ul>
+            <li>Animals
+              <ul>
+                <li>Mammals
+                  <ul>
+                    <li>Cows</li>
+                    <li>Donkeys</li>
+                    <li>Dogs</li>
+                    <li>Tigers</li>
+                  </ul>
+                </li>
+                <li>Other
+                  <ul>
+                    <li>Snakes</li>
+                    <li>Birds</li>
+                    <li>Lizards</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Fishes
+              <ul>
+                <li>Aquarium
+                  <ul>
+                    <li>Guppy</li>
+                    <li>Angelfish</li>
+                  </ul>
+                </li>
+                <li>Sea
+                  <ul>
+                    <li>Sea trout</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+    <script>
+    // let bouton = document.querySelector("button");
+    // bouton.addEventListener('click', function(evt){
+    //     alert("le bouton marche");
+    // });
+
+
+    // let bouton = document.querySelector("button");
+    // bouton.addEventListener('click', function(supp){
+    //     let msg = document.querySelector("div")
+    //     msg.remove(); // Supprimer le message
+    // })
+    
+    
+    let lists = document.querySelectorAll('body>ul li');
+    lis.foreach(function(li, index, array){
+        li.addEventListener('click', onClick);
+    })
+    function onLiClick(evt){
+        evt.stopPropagation();
+        let listToHide = evt.target.querySelector('ul');
+        if(listToHide.style.display == 'none'){
+            evt.target.querySelector('ul').style.display == '';
+        }else {
+            evt.target.querySelector('ul').style.display = "none";
+        }
+    }
+
+        
+    </script>
+</body>
+</html>

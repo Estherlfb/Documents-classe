@@ -1,0 +1,157 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        main {
+            display: flex;
+            height: 100%;
+        }
+
+        #movies {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: scroll;
+        }
+
+        #filters {
+            flex-shrink: 0;
+            width: 300px;
+            padding: 20px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.3s;
+        }
+
+        li.active {
+            background-color: #ddd;
+            color: black;
+        }
+
+        li:hover {
+            background-color: black;
+            color: white;
+        }
+
+        form {
+            background-color: #ddd;
+            border-radius: 5px;
+            padding: 16px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        input[type='text'] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="movies"></div>
+        <div id="filters">
+            <form action="">
+                <label for="title">Titre</label>
+
+                <input type="text" id="title" name="title">
+
+                <label for="director">Réalisateur</label>
+
+                <input type="text" id="director" name="director">
+                <label for="min-lending">nombre de prêt min [
+                    <span class="min-val"></span>]</label>
+
+                <input type="range" min="0" max="0" name="min-lending" id="min-lending">
+                <label for="max-lending">nombre de prêt max [
+                    <span class="max-val"></span>]</label>
+                <input type="range" min="0" max="0" name="max-lending" id="max-lending">
+
+            </form>
+            <div id="details"></div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+
+    <script>
+
+        let data;
+
+        $(function () {
+            $.getJSON(
+                "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=top-500-des-films-les-plus-empruntes-a-la-bibliotheque-de-toulouse&rows=500",
+                onDataLoaded);
+
+            function onDataLoaded(data) {
+                data = receivedData.records;
+                initForm(
+                    data.reduce((min, val) => (val.fields.nbre_de_prets < min) ? val.fields.nbre_de_prets : min, Infinity),
+                    data.reduce((max, val) => (val.fields.nbre_de_prets > max) ? val.fields.nbre_de_prets : max, 0)
+                );
+                showFilms(data);
+            }
+
+            function initForm(minLending, maxLending) {
+                let minRangeElem = $('#min-lending');
+                minRangeElem.attr('min', minLending);
+                minRangeElem.attr('max', maxLending);
+                minRangeElem.val(minLending);
+                minRangeElem.on('input', onFilterChange);
+
+                let maxRangeElem = $minRangeElem = $('#max-lending');
+                maxRangeElem.attr('min', minLending);
+                maxRangeElem.attr('max', maxLending);
+                maxRangeElem.val(maxLending);
+                maxRangeElem.on('input', onFilterChange);
+                updateRangesInfo()
+                title.on('keyup', onFilterChange);
+                director.on('keyup', onFilterChange);
+            }
+
+
+
+        });
+    </script>

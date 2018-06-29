@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div data-widget-name="menu"> Choose </div>
+    <!-- <h1> Bonjour </h1>
+    <div>Users:</div>
+
+    <ul>
+        <li>John</li>
+        <li>Pete</li>
+    </ul> -->
+
+    <script>
+        //console.log(document.body.firstElementChild.getAttribute("data-widget-name")); /*Sélectionner la valeur de data-widget-name */
+        // console.log(document.body.innerHTML);
+        // document.querySelector('h1').innerHTML = 'au revoir'; /*Changer la valeur du h1 */
+    </script>
+
+</body>
+</html>
+
+<!-- Accéder à la div avec DOM --> document.body.firstElementChild <!-- Premier enfant du body -->
+<!-- Accéder à la div avec DOM --> document.body.children[0] <!-- Premier enfant de body -->
+<!-- Accéder à ul avec DOM --> document.body.lastElementChild <!-- Dernier enfant du body -->
+<!-- Accéder à ul avec DOM --> document.body.children[1] <!-- Deuxième enfant de body -->
+<!-- Accéder à Pete --> document.body.lastElementChild.lastElementChild <!-- Dernier enfant du body, dernier enfant du ul -->

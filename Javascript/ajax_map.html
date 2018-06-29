@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="map"></div>
+    <style>
+            #map {
+              width: 100%;
+              height: 400px;
+              background-color: grey;
+            }
+    </style>
+    <script>
+           let xhr = new XMLHttpRequest();  // Je créer un objet xhr
+        xhr.addEventListener("readystatechange", onReadyStateChange);
+        // xhr.onload = onXhrLoad 
+        xhr.open('get',"https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=velo-toulouse"); // open est une méthode de XMLHttpRequest. Méthode Get ou Post
+        xhr.send();
+
+        function onReadyStateChange(evt){
+            // console.log("readyState: "+this.readyState) // this est l'émetteur de l'évenement, ici l'émetteur est xhr
+            if(this.readyState == 4 && this.status == 200){ // readyState = 0 à 4, le serveur travaille et récupère les données du serveur / Status = 202 ou 404, si ça s'est bien passé
+               parseResponse(JSON.parse(this.responseText))
+            }
+        }
+        function parseResponse(obj){
+            // let list = document.createElement('p');
+            obj.records.forEach(function(record, index, array){
+                console.log(record.fields.mot_directeur);
+                // list.inner.HTML = record.fields.street;
+                // document.body.prepend(list);
+                document.body.prepend(record.fields.mot_directeur+""); 
+                initMap(record.fields.geo_point_2d[0],record.fields.geo_point_2d[1]);
+            })
+        }
+
+        function initMap(lat, lng) {
+                var uluru = {lat: lat, lng: lng};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+                });
+                var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+                });
+            }
+
+    </script>
+
+    <script async defer     
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEJZ8k6i_p3QZ-OhVd1bK3vHSm50dD4JY&callback=initMap">     
+    </script>
+</body>
+</html>
+

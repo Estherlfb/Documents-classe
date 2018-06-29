@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <a name="list">the list</a>
+    <ul>
+        <li>
+            <a href="http://google.com">http://google.com</a>
+        </li>
+        <li>
+            <a href="/tutorial">/tutorial.html</a>
+        </li>
+        <li>
+            <a href="local/path">local/path</a>
+        </li>
+        <li>
+            <a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a>
+        </li>
+        <li>
+            <a href="http://nodejs.org">http://nodejs.org</a>
+        </li>
+        <li>
+            <a href="http://internal.com/test">http://internal.com/test</a>
+        </li>
+    </ul> -->
+
+    <!-- <script>  
+        // console.log(document.body.querySelectorAll("a"));
+        // for(let link of links){
+        //     let href = link.getAttribute('href');
+        //     if(!href) continue; // Pas d'attribut
+        //     if(!href.includes('://')) continue; // Si y'a pas ://, c'est un lien local
+        //     if(href.startsWith('http://internal.com')) continue; //lien interne
+        //     link.style.color = 'orange';
+        // }
+        // // OU
+        // let selector = 'a[href*="://"]:not([href^="http://internal.com"'
+        // let links = document.querySelectorAll(selector);
+        // links.forEach(link => link.style.color = 'orange');
+
+
+        // function clear(elem){
+        //     elem.innerHTML=''; // Supprimer tout
+        // }
+
+
+    
+        // let list = document.createElement('ul');
+        // document.body.append(ul); // On ajoute ul à la fin du body 
+        // while (true) {
+        //     contenu = prompt("Entrez un texte");
+        //     if (contenu === null){
+        //         break;
+        //     }
+        // let li = document.createElement('li')
+        // li.textContent = contenu;
+        // ul.append(li); // On ajoute li à la fin ul
+        // } 
+    </script> -->
+
+
+    <ul>
+        <li>Animals
+          <ul>
+            <li>Mammals
+              <ul>
+                <li>Cows</li>
+                <li>Donkeys</li>
+                <li>Dogs</li>
+                <li>Tigers</li>
+              </ul>
+            </li>
+            <li>Other
+              <ul>
+                <li>Snakes</li>
+                <li>Birds</li>
+                <li>Lizards</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Fishes
+          <ul>
+            <li>Aquarium
+              <ul>
+                <li>Guppy</li>
+                <li>Angelfish</li>
+              </ul>
+            </li>
+            <li>Sea
+              <ul>
+                <li>Sea trout</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+    </ul>
+
+    <script>
+        //méthode courte
+    document.querySelectorAll('li>ul')
+        .forEach(list => list.closest('li')
+            .firstChild.nodeValue += ` [${list.children.length}]`);
+
+    //méthode détaillée
+    let lists = document.querySelectorAll('li>ul');
+    list.forEach(function(list){
+        let counter = list.children.length;
+        let container = list.closest('li');
+        container.firstChild.nodeValue += `[${counter}]`;
+    })
+    </script>
+
+</body>
+
+</html>

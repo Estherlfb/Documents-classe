@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ul>
+        <li>item 01</li>
+        <li>item 02</li>
+        <li>item 03</li>
+        <li>item 04</li>
+        <li>item 05</li>
+        <li>item 06</li>
+        <li>item 07</li>
+        <li>item 08</li>
+        <li>item 09</li>
+        <li>item 10</li>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+
+    <script>
+        $(function () {
+            // $('li').css('color', 'red').each(function () {
+            //     console.log(this.textContent);
+            // })
+            // console.log($(this).text());         //($(this)) permet d'accéder à l'élement html via une méthode jquery (text())
+            // $('li').css('color','red').css('color');
+
+            $('li').each(function (index, elem) {
+                console.log($(this).attr('data-list', index));
+            })
+            console.log($('li').attr('data-list'))
+        });
+
+    </script>
+</body>
+
+</html>

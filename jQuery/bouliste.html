@@ -1,0 +1,203 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Le petit bouliste</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        form {
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .name-input,
+        .cover-input {
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid #999;
+        }
+
+        header {
+            flex-shrink: 0;
+            background-color: #ccc;
+        }
+
+        #results {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        #side-bar {
+            flex-shrink: 0;
+            width: 300px;
+            background-color: #ddd;
+        }
+
+        #map {
+            background-color: #eee;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <form action="" id="filters-form">
+                <span class="name-input">
+                    <label for="name">Nom</label>
+                    <input type="text" name="name" id="name">
+                </span>
+                <span class="cover-input">
+                    <label>couvert</label>
+                    <label>
+                        <input type="radio" name="cover" value="O"> oui</label>
+                    <label>
+                        <input type="radio" name="cover" value="N"> non</label>
+                </span>
+                <span class="distance-input">
+                    <label for="distance">distance (en km)</label>
+                    <input type="range" min="0" max="50" name="distance" id="distance">
+                </span>
+            </form>
+        </header>
+        <div id="results">
+            <div id="side-bar">
+                <div id="results-list"></div>
+                <div id="details"></div>
+            </div>
+            <div id="map">
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+    <script> 
+        init();
+        function init() {
+            let data;
+            $.getJSON(
+                'https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=boulodromes',
+                onDataLoaded
+            )
+        }
+        function onDataLoaded(receivedData) {
+            data = receivedData.records;
+            console.log(data);
+            addList(data);
+            // receivedData.records.forEach(function (record, index, array) {
+            // console.log(record.fields.geo_point_2d[0]);
+
+            // initMap(record.fields.geo_point_2d[0], record.fields.geo_point_2d[1]);
+        }
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            do_something(position.coords.latitude, position.coords.longitude);
+        });
+
+        function addList(boulodromes) {
+            let $list = $("<ul></ul");
+
+            boulodromes.forEach(function (boulodrome) {
+                console.log(boulodrome.fields.index);
+                let $li = $("<li></li>")
+                    .text(boulodrome.fields.index)
+                    .attr('data-id', boulodrome.recordid)
+                    .on('click', onBoulodromeClick);
+                $list.append($li);
+                marker(boulodrome.geometry.coordinates[0], boulodrome.geometry.coordinates[1], boulodrome.fields.index)
+            })
+            $("#results-list").append($list);
+        }
+
+
+
+
+
+        function onBoulodromeClick(evt) {
+            $("#results-list").removeClass('active');
+            $(this).addClass('active');
+            displayBoulodromeDetails($('#details'), this.dataset.id);
+
+        }
+
+        function displayBoulodromeDetails($elem, id) {
+            let boules = getBouleById(id);
+            $elem.html(`
+            <h3>${data.fields.index}</h3>
+                <strong>Index</strong> : ${data.fields.index}<br>
+                <strong>couvert</strong> : ${data.fields.couvert}<br>
+            `)
+        }
+
+        function getBouleById(id) {
+            return data.find(boules => boules.recordid == id);
+        }
+
+
+
+        function initMap(lat, lng) {
+            let uluru = { lat: 0, lng: 0 };
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: { lat: 43.600, lng: 1.433 }
+            });
+            let marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+
+        function marker(lon, lat, name) { // Fonction ajout d'un marqueur
+            var marker = new google.maps.Marker({ // Ajout d'un marqueur
+                position: { lat: lat, lng: lon }, // Définir position avec la Latitude et Longitude récupérer dans le paramètre de la fonction
+                map: map // Ajout de map pour définir la map qu'on utilise (qu'on a déclarer en variable global)
+            });
+            let infowindow = new google.maps.InfoWindow({ // Fonction d'ajout d'une fenêtre d'information
+                content: name // Ajout du contenu qui serra ajouté dans la fenêtre d'information
+            });
+
+            marker.addListener('click', function () { // Fonction d'écoute lorsqu'on clique
+                if (openedInfoWindow) {
+                    openedInfoWindow.close(); // Ferme la fenêtre "infowindow"
+                }
+                infowindow.open(map, marker); // Prend l'objet infowindow qui contient(content: name), sur quel map, et sur quel marqueur (map, marker). Un peu compliqué a expliqué 
+                openedInfoWindow = infowindow; // Définie la variable a infowindow qui deviendra TRUE
+            });
+            map.addListener('click', function () { // Fonction d'écoute lorsqu'on clique
+                infowindow.close(map, marker); // Prend l'objet infowindow qui contient(content: name), sur quel map, et sur quel marqueur (map, marker). Un peu compliqué a expliqué 
+            });
+        }
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEJZ8k6i_p3QZ-OhVd1bK3vHSm50dD4JY&callback=initMap">     
+    </script>
+
+</body>
+
+</html>

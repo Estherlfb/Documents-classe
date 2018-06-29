@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label> Titre </label>
+        <input type="text" name="titre" id="titre"/> 
+
+        <label> Auteur </label>
+        <input type="text" name="auteur" id="auteur" />
+
+        <label> Nombre de prêts minimum </label>
+        <input type="range" name="min" id="min">
+
+        <label> Nombre de prêts maximum </label>
+        <input type="range" name="max" id="max">
+
+    </form>
+    <script>
+
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", listenListener);
+        xhr.open('get', "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=top-500-des-imprimes-les-plus-empruntes-a-la-bibliotheque-de-toulouse&rows=100");
+        xhr.send();
+
+
+        function listenListener(evt) {
+            if (this.readyState == 4 && this.status == 200) {
+                parseResponse(JSON.parse(this.responseText))
+            }
+        }
+
+        function parseResponse(obj) {
+            let ul = document.createElement('ul');
+            document.body.append(ul);
+            obj.records.forEach(function (record) {
+                let li = document.createElement('li');
+                li.textContent = record.fields.titre;
+                ul.append(li); 
+                // document.body.append(record.fields.auteur);
+
+            })
+        }
+
+        
+    </script>
+</body>
+
+</html>
